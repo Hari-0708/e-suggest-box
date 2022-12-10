@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.set("view engine", "ejs")
 app.use(express.static(__dirname + '/views'));
 
-mongoose.connect("mongodb://localhost:27017/testDB", {useNewUrlParser: true});
+mongoose.connect("mongodb+srv://admin-hari:Hari1234@cluster0.v5wilz5.mongodb.net/testDB", {useNewUrlParser: true});
 
 const studentScheema = new mongoose.Schema({
     name: String,
