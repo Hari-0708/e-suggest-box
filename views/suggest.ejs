@@ -1,57 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Suggestion</title>
+    <title>Suggest</title>
+    <link rel="stylesheet" href="public/style.css">
 </head>
 <body>
-    <div>
+    <div class="inner-area" id="inner-area">
+        <center> <h1>e-suggest App</h1></center>
         <form action="/suggest" method="post" id="container">
             <input type="hidden" name="dno" value= <%= dno  %> >
-            Choose Category <br>
-            <select name="category" id="generate" onchange="addFaculty(this)">
-                <option value="department">Department</option>
-                <option value="faculty">Faculty</option>
-                <option value="infrastructure">Infrastructure</option>
-            </select><br> 
-            <label id="msg-label">Message</label> <br>
-            <textarea name="message" id="" cols="30" rows="10"></textarea>
-            <input type="submit" value="Submit">
+            <div class="suggest_form">
+                <label class="">Select Category</label> <br>
+                <select name="category" id="generate" class="select" onchange="addFaculty(this)">
+                    <option disabled selected value>Please select a category</option>
+                    <option value="department">Department</option>
+                    <option value="faculty">Faculty</option>
+                    <option value="infrastructure">Infrastructure</option>
+                </select>
+            </div>
+            <div class="suggest_form" id="msg-label">
+                <label>Message</label> <br>
+                <textarea name="message" class="select" id="textbox"></textarea>
+            </div>
+            <div class="button__form">
+                <input type="reset">
+                <input type="submit">
+            </div>
         </form>
     </div>
-
     <script type="text/javascript">
         console.log("Connected to changes js file.")
 
         function addFaculty(control) {
 
-            if( control.value == "faculty"){ 
+            let container = document.getElementById("container");
+            var values = ["Arul", "Priya", "Krishanth", "Dorathy", "Subash"];
+            var select = document.createElement("select");
+            select.name = "staff";
+            select.id = "staff";
+            select.className = "select";
 
+            for (const val of values)
+            {
+                var option = document.createElement("option");
+                option.value = val;
+                option.text = val.charAt(0).toUpperCase() + val.slice(1);
+                select.appendChild(option);
+            }
 
-                let container = document.getElementById("container");
+            var label = document.createElement("label");
+            label.innerHTML = "Choose your Staff: "
+            label.htmlFor = "staff";
 
-                var values = ["Arul", "Priya", "Krishanth", "Dorathy", "Subash"];
-                var lineBreak = document.createElement("br");
-                
-                var select = document.createElement("select");
-                select.name = "staff";
-                select.id = "staff"
+            var new_div = document.createElement("div");
+            new_div.className = "suggest_form";
+            new_div.id = "staff_select"
+            new_div.appendChild(label);
+            new_div.appendChild(select)
 
-                for (const val of values)
-                {
-                    var option = document.createElement("option");
-                    option.value = val;
-                    option.text = val.charAt(0).toUpperCase() + val.slice(1);
-                    select.appendChild(option);
+            if( control.value == "faculty"){
+                if(!(document.getElementById("staff"))) {
+
+                    let inner_area = document.getElementById("inner-area");
+                    console.log(inner_area);
+                    inner_area.style.height = "600px";
+
+                    container.insertBefore(new_div, document.getElementById("msg-label"));
+                    
                 }
-
-                var label = document.createElement("label");
-                label.innerHTML = "Choose your Staff: "
-                label.htmlFor = "staff";
-
-                container.insertBefore(label, document.getElementById("msg-label"));
-                label.appendChild(document.createElement("br"));
-                container.insertBefore(select, document.getElementById("msg-label"));
-                container.insertBefore(lineBreak, document.getElementById("msg-label"));
+            }
+            else{
+                if(document.getElementById("staff")){
+                    container.removeChild(document.getElementById("staff_select"));
+                }
             }
 
         }

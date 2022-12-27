@@ -65,6 +65,8 @@ app.post("/suggest", (req, res) => {
         update["staff"] = req.body.staff;
     }
     
+    console.log(update);
+
     Student.updateOne({"dno": req.body.dno}, update, (err, docs) => {
         if(err){
             console.log("Error occured!, document not updated!");

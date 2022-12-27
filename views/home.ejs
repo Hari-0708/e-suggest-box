@@ -1,21 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Document</title>
+    <title>Home</title>
+    <link rel="stylesheet" href="public/style.css">
 </head>
 <body>
-    <div>
-        <i>"Enter your details correctly."</i>
-        <form action="/", method="post">
-            Name <br>
-            <input type="text" name="name" placeholder="Enter your Name" required> <br>
-            Mail-id <br>
-            <input type="text" name="mail" placeholder="Enter your college mail-id" required> <br>
-            D No <br>
-            <input type="text" name="dno" placeholder="Enter your Dno" required> <br>
-            Department <br>
-            <input type="text" name="dept" placeholder="Enter your Department" required> <br>
-            <input type="submit">
+    <div class="inner-area">
+        <center> 
+            <h1>e-suggest App</h1>
+            <p><i>-- enter your details correctly --</i></p>
+        </center>
+        <form action="/" method="post" >
+            <span class="form">
+                <input class="form__input" type="text" name="name" id="" placeholder=" " required> <br>
+                <label class="form__label">Name</label>
+            </span>
+
+            <span class="form">
+                <input class="form__input" type="text" name="dno" id="" placeholder=" " required> <br>
+                <label class="form__label">Dno</label>
+            </span>
+
+            <span class="form">
+                <input class="form__input" type="text" name="mail" id="" placeholder=" " required> <br>
+                <label class="form__label">Mail</label>
+            </span>
+
+            <span class="form">
+                <input class="form__input" type="text" name="dept" id="" placeholder=" " required> <br>
+                <label class="form__label">Department</label>
+            </span>
+
+            <span class="button__form">
+                <input class="button" type="reset">
+                <input class="button" type="submit">
+            </span>
         </form>
     </div>
 </body>
