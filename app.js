@@ -1,6 +1,7 @@
 const express = require("express")
 const bodyParser = require("body-parser");
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
+const { response } = require("express");
 // const path = require("path")
 
 const port = 8000;
@@ -26,7 +27,13 @@ const Student = new mongoose.model("Student", studentScheema);
 
 
 app.get("/", (req, res) => {
-    res.render("home");
+    if(req.query.already != null){
+        console.log(req.query.already);
+        res.render("home", {alert_msg:"Name already exits"})
+    }
+    else{
+        res.render("home",{alert_msg:null});
+    }
 })
 
 app.post("/", (req, res) => {
@@ -40,8 +47,8 @@ app.post("/", (req, res) => {
 
     Student.find({dno : student.dno}, function (err, docs) {
         if (docs.length){
-            console.log('Name exists already');
-            res.redirect("/");
+            // console.log('Name exists already');
+            res.redirect("/?already="+true);
         }else{
             student.save();
             console.log("Inserted succesfully.");

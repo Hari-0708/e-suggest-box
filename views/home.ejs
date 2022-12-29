@@ -7,6 +7,10 @@
 </head>
 <body>
     <div class="inner-area">
+        <% if(alert_msg != null){ %>
+            <% console.log("error found"); %>
+            <p id="hideMeAfter5Seconds" role="alert">⚠️ <%= alert_msg %> </p>
+        <% } %>
         <center> 
             <h1>e-suggest App</h1>
             <p><i>-- enter your details correctly --</i></p>
